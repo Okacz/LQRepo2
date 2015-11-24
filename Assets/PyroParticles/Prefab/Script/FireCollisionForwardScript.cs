@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace DigitalRuby.PyroParticles
-{
+
     public interface ICollisionHandler
     {
         void HandleCollision(GameObject obj, Collision c);
@@ -18,9 +17,27 @@ namespace DigitalRuby.PyroParticles
     {
         public ICollisionHandler CollisionHandler;
 
+        SimpleMovement controller;
+        public void Start()
+        {
+            GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+            if (gameControllerObject != null)
+            {
+                controller = gameControllerObject.GetComponent<SimpleMovement>();
+
+            }
+        }
         public void OnCollisionEnter(Collision col)
         {
+            if (col.collider.name == "MainLumberjack")
+            {
+                print("kolizja z " + col.collider.name);
+                controller.Damage(10);
+
+            }
             CollisionHandler.HandleCollision(gameObject, col);
+            
         }
+        
     }
-}
+

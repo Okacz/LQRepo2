@@ -75,6 +75,10 @@ public class SimpleMovement : MonoBehaviour
     {
         StartCoroutine(DamageEnum(newHealth));
     }
+    public void NoDamage(int newHealth)
+    {
+        TakeDamage(newHealth);
+    }
     public IEnumerator DamageEnum(int newHealth)
     {
         
@@ -93,6 +97,15 @@ public class SimpleMovement : MonoBehaviour
             
         }
 
+    }
+    public void TakeDamage(int newHealth)
+    {
+        health -= newHealth;
+            UpdateHealth();
+        if(health<=0)
+            {
+                Application.LoadLevel("Main Menu");
+            }
     }
     void UpdateHealth()
     {
@@ -131,5 +144,9 @@ public class SimpleMovement : MonoBehaviour
                 }
             }
         }
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        
     }
 }

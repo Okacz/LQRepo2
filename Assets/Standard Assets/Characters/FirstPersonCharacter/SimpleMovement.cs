@@ -34,10 +34,17 @@ public class SimpleMovement : MonoBehaviour
         CharacterController controller = GetComponent<CharacterController>();
         transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed, 0);
         Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 right = transform.TransformDirection(Vector3.left);
         float cS = speed * Input.GetAxis("Vertical");
         curSpeed = cS;
         ChangeAnimation();
         controller.SimpleMove(forward * curSpeed);
+        if (Input.GetKey(KeyCode.Q))
+        {
+            //controller.SimpleMove(right * curSpeed);
+           // transform.Translate(new Vector3(1 * curSpeed, 0, 0), Space.World);
+            controller.Move(right * curSpeed/10);
+        }
         if (Input.GetKey(KeyCode.Space))
         {
             if(controller.isGrounded)

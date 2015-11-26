@@ -7,6 +7,8 @@ public class CameraMovement : MonoBehaviour {
   Transform target;
   
  void Update () {
+     target = transform.parent;
+
      if (Input.GetMouseButton(0))
      {
          target = transform.parent;
@@ -28,6 +30,7 @@ public class CameraMovement : MonoBehaviour {
              transform.RotateAround(new Vector3(target.position.x, target.position.y, target.position.z), Vector3.up, c);
              print(c);
          }
+     //transform.RotateAround(new Vector3(target.position.x, target.position.y, target.position.z), Vector3.right, Input.GetAxis("Mouse Y") * speed);
 
  }
 

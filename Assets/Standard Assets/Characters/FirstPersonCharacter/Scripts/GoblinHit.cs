@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace UnityStandardAssets.Characters.FirstPerson
-{
+
     public class GoblinHit : MonoBehaviour
     {
 
@@ -32,4 +31,3 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
     }
-}

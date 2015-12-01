@@ -143,7 +143,7 @@ namespace DigitalRuby.PyroParticles
                 Stop();
             }
         }
-
+        
         public static void CreateExplosion(Vector3 pos, float radius, float force)
         {
             if (force <= 0.0f || radius <= 0.0f)
@@ -155,10 +155,20 @@ namespace DigitalRuby.PyroParticles
             Collider[] objects = UnityEngine.Physics.OverlapSphere(pos, radius);
             foreach (Collider h in objects)
             {
+                print("dededed");
                 Rigidbody r = h.GetComponent<Rigidbody>();
                 if (r != null)
                 {
-                    r.AddExplosionForce(force, pos, radius);
+                    print("dededed");
+                        GameObject gameControllerObject = GameObject.FindWithTag("MainLumberjack");
+                        if (gameControllerObject != null)
+                        {
+                            SimpleMovement controller= gameControllerObject.GetComponent<SimpleMovement>();
+                            controller.NoDamage(30);
+                        }
+                        
+                    
+                   // r.AddExplosionForce(force, pos, radius);
                 }
             }
         }

@@ -12,7 +12,7 @@ GameObject:
   - 82: {fileID: 8228610}
   - 114: {fileID: 11462752}
   - 114: {fileID: 11450262}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ GameObject:
   - 54: {fileID: 5453920}
   - 108: {fileID: 10860366}
   - 114: {fileID: 11437010}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FireballCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - 4: {fileID: 419864}
   - 198: {fileID: 19886674}
   - 199: {fileID: 19993248}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FireballProjectiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   - 4: {fileID: 492682}
   - 198: {fileID: 19810394}
   - 199: {fileID: 19908910}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FireballTail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - 4: {fileID: 407174}
   - 198: {fileID: 19899590}
   - 199: {fileID: 19998884}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FireballExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,30 +389,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 121802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 245887334a601354cb1853676e37a7e6, type: 3}
+  m_Script: {fileID: 11500000, guid: edb4b036759befb44adb7543192710db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AudioSource: {fileID: 0}
   StartTime: .25
-  StopTime: 1
+  StopTime: 3
   Duration: 3
   ForceAmount: 0
   ForceRadius: 0
   IsProjectile: 1
   ManualParticleSystems:
   - {fileID: 19899590}
-  ProjectileColliderObject: {fileID: 130866}
-  ProjectileCollisionSound: {fileID: 8274270}
-  ProjectileExplosionParticleSystem: {fileID: 19899590}
-  ProjectileExplosionRadius: 10
-  ProjectileExplosionForce: 2000
-  ProjectileColliderDelay: 0
-  ProjectileColliderSpeed: 25
-  ProjectileDirection: {x: 0, y: 0, z: 1}
-  ProjectileCollisionLayers: {}
-  ProjectileDestroyParticleSystemsOnCollision:
-  - {fileID: 19810394}
-  - {fileID: 19886674}
 --- !u!114 &11462752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -426,7 +414,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Seed: 0
   IntensityModifier: 2
-  IntensityMaxRange: {x: 0, y: 8}
+  IntensityMaxRange:
+    Minimum: 0
+    Maximum: 8
 --- !u!135 &13546184
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -3512,7 +3502,47 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: ProjectileExplosionForce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ProjectileExplosionRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ProjectileColliderSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ProjectileCollisionLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: IsProjectile
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ForceAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ForceRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: StopTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 121802}

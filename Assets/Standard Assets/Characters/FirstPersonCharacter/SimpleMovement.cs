@@ -32,12 +32,29 @@ public class SimpleMovement : MonoBehaviour
     {
         
         CharacterController controller = GetComponent<CharacterController>();
+
         transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed, 0);
         Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 right = transform.TransformDirection(Vector3.left);
+        float strafingspeed = Time.deltaTime * speed;
+        if (Input.GetKey(KeyCode.Q))
+        {
+            
+            //controller.SimpleMove(right * curSpeed);
+            // transform.Translate(new Vector3(1, 0, 0), Space.World);
+            controller.Move(-transform.right*strafingspeed);
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            //controller.SimpleMove(right * curSpeed);
+            // transform.Translate(new Vector3(1, 0, 0), Space.World);
+            controller.Move(transform.right*strafingspeed);
+        }
         float cS = speed * Input.GetAxis("Vertical");
         curSpeed = cS;
         ChangeAnimation();
         controller.SimpleMove(forward * curSpeed);
+       
         if (Input.GetKey(KeyCode.Space))
         {
             if(controller.isGrounded)
@@ -75,6 +92,10 @@ public class SimpleMovement : MonoBehaviour
     {
         StartCoroutine(DamageEnum(newHealth));
     }
+    public void NoDamage(int newHealth)
+    {
+        TakeDamage(newHealth);
+    }
     public IEnumerator DamageEnum(int newHealth)
     {
         
@@ -93,6 +114,15 @@ public class SimpleMovement : MonoBehaviour
             
         }
 
+    }
+    public void TakeDamage(int newHealth)
+    {
+        health -= newHealth;
+            UpdateHealth();
+        if(health<=0)
+            {
+                Application.LoadLevel("Main Menu");
+            }
     }
     void UpdateHealth()
     {
@@ -131,5 +161,9 @@ public class SimpleMovement : MonoBehaviour
                 }
             }
         }
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        
     }
 }

@@ -2,12 +2,12 @@
 using System.Collections;
 namespace UnityStandardAssets.Characters.FirstPerson
 {
-    public class GoblinController : MonoBehaviour
+    public class GoblinBossController : MonoBehaviour
     {
         public SimpleMovement controller;
         public Transform Player;
 
-        float health = 100;
+        float health = 1000;
         bool invulnerable = false;
         float MoveSpeed = 3;
         float MaxDist = 8;
@@ -26,9 +26,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         void Update()
         {
-            
 
-            if(health>0)
+
+            if (health > 0)
             {
                 transform.LookAt(Player);
                 transform.eulerAngles = new Vector3(
@@ -36,14 +36,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 transform.eulerAngles.y,
                 0
                 );
-                if (!GetComponent<Animation>().IsPlaying("attack1")&&!GetComponent<Animation>().IsPlaying("block"))
+                if (!GetComponent<Animation>().IsPlaying("attack1") && !GetComponent<Animation>().IsPlaying("block"))
                 {
                     if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(Player.position.x, 0, Player.position.z)) > MaxDist)
                     {
                         GetComponent<Animation>().wrapMode = WrapMode.Default;
 
                         GetComponent<Animation>().Play("idle");
-                        
+
                     }
                     else
                         if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(Player.position.x, 0, Player.position.z)) <= MaxDist && Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(Player.position.x, 0, Player.position.z)) >= MinDist)
@@ -65,24 +65,24 @@ namespace UnityStandardAssets.Characters.FirstPerson
                             }
                 }
             }
-            
-            
+
+
         }
         IEnumerator getRect(float damage)
         {
-                GetComponent<Animation>().Stop();
-                GetComponent<Animation>().wrapMode = WrapMode.Once;
-                GetComponent<Animation>().Play("block");
-                health = health - damage;
-                if (health <= 0)
-                {
-                    die();
-                }
-                invulnerable = true;
-                yield return new WaitForSeconds(1);
-                invulnerable = false;
-                
-            
+            GetComponent<Animation>().Stop();
+            GetComponent<Animation>().wrapMode = WrapMode.Once;
+            GetComponent<Animation>().Play("block");
+            health = health - damage;
+            if (health <= 0)
+            {
+                die();
+            }
+            invulnerable = true;
+            yield return new WaitForSeconds(1);
+            invulnerable = false;
+
+
         }
         void die()
         {
@@ -90,7 +90,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             GetComponent<Animation>().Play("death");
             GetComponent<BoxCollider>().isTrigger = true;
             GetComponent<Rigidbody>().isKinematic = true;
-            
+
         }
         void OnTriggerEnter(Collider other)
         {
@@ -109,7 +109,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     }
                 }
             }
-            
+
         }
     }
 }

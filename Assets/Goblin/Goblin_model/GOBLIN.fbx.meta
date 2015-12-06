@@ -957,7 +957,7 @@ ModelImporter:
     - serializedVersion: 16
       name: death
       takeName: GOB_kill1
-      firstFrame: 0
+      firstFrame: 40
       lastFrame: 66
       wrapMode: 0
       orientationOffsetY: 0

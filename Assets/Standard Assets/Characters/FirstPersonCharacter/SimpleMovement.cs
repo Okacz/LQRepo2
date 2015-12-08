@@ -11,6 +11,7 @@ public class SimpleMovement : MonoBehaviour
     public float speed = 3.0F;
     public float rotateSpeed = 3.0F;
     public float JumpSpeed = 1.0f;
+    private float potiony = 0;
     private float curSpeed = 0;
     private float strafingspeed = 0;
     public GameObject camera;
@@ -18,6 +19,7 @@ public class SimpleMovement : MonoBehaviour
     public GameObject healthBar;
     private float maxBarLength = 0;
     public Text healthText;
+    public Text potionText;
     private float health;
     public float maxHealth;
     public Text scoreText;
@@ -37,6 +39,7 @@ public class SimpleMovement : MonoBehaviour
         score = 0;
         UpdateHealth();
         menu.SetActive(false);
+        potiony = 0;
         
     }
     void Update()
@@ -135,6 +138,14 @@ public class SimpleMovement : MonoBehaviour
             }
 
         }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            if (potiony>0)
+            {
+                consumePotion();
+            }
+
+        }
         
     }
     void showMenu()
@@ -157,9 +168,36 @@ public class SimpleMovement : MonoBehaviour
     {
         StartCoroutine(DamageEnum(newHealth));
     }
+    public void heal(int healing)
+   {
+        if(health+healing<=maxHealth)
+        {
+            health += healing;
+        }
+        else
+        {
+            health = maxHealth;
+        }
+       UpdateHealth();
+   }
     public void NoDamage(int newHealth)
     {
         TakeDamage(newHealth);
+    }
+    public void getPotion(int number)
+    {
+        potiony += number;
+        updatePotiony();
+    }
+    public void updatePotiony()
+    {
+        potionText.text = "Potiony: " + potiony;
+    }
+    public void consumePotion()
+    {
+        potiony -= 1;
+        updatePotiony();
+        heal(40);
     }
     public IEnumerator DamageEnum(int newHealth)
     {
@@ -192,7 +230,7 @@ public class SimpleMovement : MonoBehaviour
     }
     void UpdateHealth()
     {
-        healthText.text = "HP: " + health;
+        //healthText.text = "HP: " + health;
 
         float oldX = healthBar.transform.position.x;
         float oldW = healthBar.GetComponent<RectTransform>().rect.width;

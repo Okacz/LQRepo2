@@ -11,4 +11,10 @@ public class WroćDoGry : MonoBehaviour
         menu.SetActive(false);
         Time.timeScale = 1;
     }
+    public void Wyjdź()
+   {
+       print("QUIT");
+       Application.Quit();
+        
+   }
 }

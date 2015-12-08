@@ -2295,10 +2295,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1337155925}
   m_RootOrder: 3
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 320.5, y: 105}
-  m_SizeDelta: {x: 143.199997, y: 18.3999996}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -83.5, y: -58}
+  m_SizeDelta: {x: 143.200012, y: 18.3999939}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &93641481
 MonoBehaviour:
@@ -7029,10 +7029,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1337155925}
   m_RootOrder: 4
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 320.5, y: 105}
-  m_SizeDelta: {x: 143.199997, y: 18.3999996}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -83.5, y: -58}
+  m_SizeDelta: {x: 143.200012, y: 18.3999939}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &357711117
 MonoBehaviour:
@@ -19248,8 +19248,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

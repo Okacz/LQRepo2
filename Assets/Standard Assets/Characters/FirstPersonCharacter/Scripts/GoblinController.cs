@@ -6,6 +6,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
     {
         public SimpleMovement controller;
         public Transform Player;
+        public GameObject potion;
 
         float health = 100;
         bool invulnerable = false;

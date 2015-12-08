@@ -14,8 +14,13 @@ public class CameraMovement3 : MonoBehaviour
     void LateUpdate()
     {
         transform.RotateAround(new Vector3(target.position.x, target.position.y, target.position.z), Vector3.up, Input.GetAxis("Mouse X") * speed);
+        
         pos = Quaternion.Euler(0, Input.GetAxis("Mouse X") * speed, 0) * pos;
         transform.position = target.position + pos;
+        if (Input.GetAxis("Mouse ScrollWheel")!=0)
+        {
+            pos = new Vector3(0, -0.3f, 1) * Input.GetAxis("Mouse ScrollWheel") + pos;
+        }
         //transform.RotateAround(new Vector3(target.position.x, target.position.y, target.position.z), Vector3.up, Input.GetAxis("Mouse X") * speed);
         /*
         if (Input.GetMouseButton(0))

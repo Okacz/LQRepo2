@@ -147,7 +147,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             float randomz = Random.Range(-1, 1);
             if (random == 1)
             {
-                GameObject a = (GameObject)Instantiate(loot, new Vector3(transform.position.x+randomx, transform.position.y + 2, transform.position.z+randomz) + transform.forward * 2, transform.rotation);
+                GameObject a = (GameObject)Instantiate(loot, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z) + transform.forward * 2, Quaternion.EulerAngles(0, 0, 0));
             }
 
         }

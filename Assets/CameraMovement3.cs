@@ -19,7 +19,7 @@ public class CameraMovement3 : MonoBehaviour
             //transform.RotateAround(target.position, new Vector3((transform.rotation.eulerAngles.y%90), 0, 90-(transform.rotation.eulerAngles.y%90)), Input.GetAxis("Mouse Y") * speed);
             transform.RotateAround(new Vector3(target.position.x, target.position.y, target.position.z), transform.right, -Input.GetAxis("Mouse Y") * speed);
             print("rotacja " +transform.rotation.eulerAngles.y % 90);
-            //pos = Quaternion.Euler(0, Input.GetAxis("Mouse X") * speed, 0) * pos;
+            pos = Quaternion.Euler(0, Input.GetAxis("Mouse X") * speed, 0) * pos;
             //pos = Quaternion.Euler(transform.right) * pos;
             transform.position = target.position + (Quaternion.Euler(transform.right)*pos);
             if (Input.GetAxis("Mouse ScrollWheel") != 0)

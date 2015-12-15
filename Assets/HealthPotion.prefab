@@ -12,7 +12,6 @@ GameObject:
   - 23: {fileID: 2372844}
   - 136: {fileID: 13650386}
   - 114: {fileID: 11417756}
-  - 54: {fileID: 5493770}
   m_Layer: 0
   m_Name: HealthPotion
   m_TagString: Untagged
@@ -64,21 +63,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165402}
   m_Mesh: {fileID: 4300000, guid: c06228e70fa519e44983568d141bb23c, type: 3}
---- !u!54 &5493770
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 165402}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &11417756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -98,7 +82,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165402}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 1.20380056
   m_Height: .825711131
@@ -113,7 +97,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

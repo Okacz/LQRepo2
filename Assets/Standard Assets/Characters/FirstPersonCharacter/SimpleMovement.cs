@@ -44,6 +44,11 @@ public class SimpleMovement : MonoBehaviour
     }
     void Update()
     {
+        transform.eulerAngles = new Vector3(
+                            0,
+                            transform.eulerAngles.y,
+                            0
+                            );
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if (menu.activeSelf==false)
@@ -105,10 +110,15 @@ public class SimpleMovement : MonoBehaviour
         }
         
         controller.SimpleMove(forward);
+
         if (curSpeed != 0)
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(rS, 0, cS))*camera.transform.rotation;
-            
+            transform.eulerAngles = new Vector3(
+                            0,
+                            transform.eulerAngles.y,
+                            0
+                            );
         }
         ChangeAnimation();
         // KONIEC NOWEJ WERSJI RUCHU

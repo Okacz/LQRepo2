@@ -13,6 +13,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         float MoveSpeed = 3;
         float MaxDist = 8;
         float MinDist = 3;
+        public bool dropsPotion = false;
         bool idiot = false;
         // Use this for initialization
         void Start()
@@ -141,14 +142,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             GetComponent<Animation>().Play("death");
             GetComponent<BoxCollider>().isTrigger = true;
             GetComponent<Rigidbody>().isKinematic = true;
-            int random = Random.Range(1, 4);
-            
-            float randomx = Random.Range(-1, 1);
-            float randomz = Random.Range(-1, 1);
-            if (random == 1)
+
+            if (dropsPotion == true)
             {
-                GameObject a = (GameObject)Instantiate(loot, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z) + transform.forward * 2, Quaternion.EulerAngles(0, 0, 0));
-            }
+                GameObject a = (GameObject)Instantiate(loot, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.Euler(-90, -180, 0));
+            }          
 
         }
         void OnTriggerEnter(Collider other)

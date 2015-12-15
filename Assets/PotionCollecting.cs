@@ -9,8 +9,9 @@ using System.Collections;
     {
 
         public SimpleMovement controller;
-
-
+        float max = 0.5f;
+        float min = 0;
+        bool updown = true;
         void Start()
         {
             GameObject gameControllerObject = GameObject.FindWithTag("GameController");
@@ -18,6 +19,27 @@ using System.Collections;
             {
                 controller = gameControllerObject.GetComponent<SimpleMovement>();
 
+            }
+            min = transform.position.y;
+        }
+        void Update()
+        {
+            if (updown == true)
+            {
+                transform.Translate(0, 0, 0.02f);
+            }
+                
+            else
+            {
+                transform.Translate(0, 0, -0.02f);
+            }
+            if (transform.position.y>min+max)
+            {
+                updown = false;
+            }
+            if(transform.position.y<min)
+            {
+                updown = true;
             }
         }
         void OnTriggerEnter(Collider other)

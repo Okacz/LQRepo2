@@ -3043,6 +3043,24 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 15462360, guid: 9208f1f4257e7dd4fb9ce5c78b8a69fe, type: 2}
+      propertyPath: m_TerrainData
+      value: 
+      objectReference: {fileID: 15600000, guid: 0729f23894b48ac4189b533066a71c9f,
+        type: 2}
+    - target: {fileID: 21892256, guid: 9208f1f4257e7dd4fb9ce5c78b8a69fe, type: 2}
+      propertyPath: m_TerrainData
+      value: 
+      objectReference: {fileID: 15600000, guid: 0729f23894b48ac4189b533066a71c9f,
+        type: 2}
+    - target: {fileID: 21892256, guid: 9208f1f4257e7dd4fb9ce5c78b8a69fe, type: 2}
+      propertyPath: m_HeightmapPixelError
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 21892256, guid: 9208f1f4257e7dd4fb9ce5c78b8a69fe, type: 2}
+      propertyPath: m_DrawHeightmap
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9208f1f4257e7dd4fb9ce5c78b8a69fe, type: 2}
   m_IsPrefabParent: 0

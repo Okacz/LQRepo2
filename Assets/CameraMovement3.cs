@@ -17,14 +17,27 @@ public class CameraMovement3 : MonoBehaviour
 		{
             transform.RotateAround(new Vector3(target.position.x, target.position.y, target.position.z), Vector3.up, Input.GetAxis("Mouse X") * speed);
             //transform.RotateAround(target.position, new Vector3((transform.rotation.eulerAngles.y%90), 0, 90-(transform.rotation.eulerAngles.y%90)), Input.GetAxis("Mouse Y") * speed);
-            transform.RotateAround(new Vector3(target.position.x, target.position.y, target.position.z), transform.right, -Input.GetAxis("Mouse Y") * speed);
-            print("rotacja " +transform.rotation.eulerAngles.y % 90);
-            pos = Quaternion.Euler(0, Input.GetAxis("Mouse X") * speed, 0)*pos;
-            //pos = Quaternion.Euler(transform.right) * pos;
-            transform.position = target.position + (Quaternion.Euler(transform.right)*pos);
+            if ((Input.GetAxis("Mouse Y") > 0 && transform.rotation.x > -0.18f) || (Input.GetAxis("Mouse Y") < 0 && transform.rotation.x < 0.4f))
+            {
+                transform.RotateAround(new Vector3(target.position.x, target.position.y, target.position.z), transform.right, -Input.GetAxis("Mouse Y") * speed);
+
+            }
+            
+            //pos = Quaternion.Euler(0, Input.GetAxis("Mouse X") * speed, 0)*pos;
+            
+                //pos = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z)*Input.GetAxis("Mouse Y")) * pos;
+            
+            print(transform.rotation.x);
+
+
+            transform.position = target.position + transform.rotation * pos;
             if (Input.GetAxis("Mouse ScrollWheel") != 0)
             {
-                pos = new Vector3(0, -0.3f, 1) * Input.GetAxis("Mouse ScrollWheel") + pos;
+                if ((Input.GetAxis("Mouse ScrollWheel") >0&&pos.y>1.02f)||(Input.GetAxis("Mouse ScrollWheel") <0&&pos.y<3))
+                {
+                    pos = new Vector3(0, -0.3f, 1) * Input.GetAxis("Mouse ScrollWheel") + pos;
+                }
+                
             }
             //transform.RotateAround(new Vector3(target.position.x, target.position.y, target.position.z), Vector3.up, Input.GetAxis("Mouse X") * speed);
             /*

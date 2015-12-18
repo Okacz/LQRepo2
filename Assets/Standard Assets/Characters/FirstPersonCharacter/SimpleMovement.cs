@@ -16,6 +16,7 @@ public class SimpleMovement : MonoBehaviour
     private float strafingspeed = 0;
     public GameObject camera;
     public GameObject jack = GameObject.Find("Lumberjack2");
+    public GameObject projectile;
     public GameObject healthBar;
     private float maxBarLength = 0;
     public Text healthText;
@@ -44,6 +45,17 @@ public class SimpleMovement : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if(score>0)
+            {
+                GameObject a = (GameObject)Instantiate(projectile, transform.position + transform.forward * 1 + transform.up * 1, projectile.transform.rotation);
+                a.GetComponent<Rigidbody>().AddForce(transform.forward * 20000 + transform.up * 5000);
+                score--;
+                UpdateScore();
+            }
+           
+        }
         transform.eulerAngles = new Vector3(
                             0,
                             transform.eulerAngles.y,

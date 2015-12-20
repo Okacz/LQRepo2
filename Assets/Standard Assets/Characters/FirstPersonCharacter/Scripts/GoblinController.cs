@@ -171,10 +171,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 GameObject thingy = other.gameObject;
                 Vector3 thingyspeed=thingy.GetComponent<Rigidbody>().velocity;
-                print(thingyspeed);
-                if(Mathf.Abs(thingyspeed.x)+Mathf.Abs(thingyspeed.y)+Mathf.Abs(thingyspeed.z)>4)
+                //print(thingyspeed.magnitude);
+                if(thingyspeed.magnitude>3)
                 {
-                    
+                    print(thingyspeed.magnitude);
                     if (invulnerable == false)
                     {
                         StartCoroutine(getRect(50));

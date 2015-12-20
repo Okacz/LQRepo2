@@ -47,7 +47,7 @@ public class SimpleMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if(score>0)
+            if(score>-1233)
             {
                 GameObject a = (GameObject)Instantiate(projectile, transform.position + transform.forward * 1 + transform.up * 1, projectile.transform.rotation);
                 a.GetComponent<Rigidbody>().AddForce(transform.forward * 20000 + transform.up * 5000);
@@ -149,9 +149,7 @@ public class SimpleMovement : MonoBehaviour
         {
             if (transform.position.y < maxHeight)
             {
-                print("ded");
                 Jump();
-                print(transform.position.y);
 
             }
             else

@@ -149,6 +149,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }          
 
         }
+        
         void OnTriggerEnter(Collider other)
         {
             if (health > 0)
@@ -165,6 +166,21 @@ namespace UnityStandardAssets.Characters.FirstPerson
                         }
                     }
                 }
+            }
+            if(other.tag=="PlayerPhysicsProjectile")
+            {
+                GameObject thingy = other.gameObject;
+                Vector3 thingyspeed=thingy.GetComponent<Rigidbody>().velocity;
+                print(thingyspeed);
+                if(Mathf.Abs(thingyspeed.x)+Mathf.Abs(thingyspeed.y)+Mathf.Abs(thingyspeed.z)>4)
+                {
+                    
+                    if (invulnerable == false)
+                    {
+                        StartCoroutine(getRect(50));
+                    }
+                }
+                
             }
             
         }

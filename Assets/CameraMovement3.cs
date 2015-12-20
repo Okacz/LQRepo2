@@ -27,7 +27,6 @@ public class CameraMovement3 : MonoBehaviour
             
                 //pos = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z)*Input.GetAxis("Mouse Y")) * pos;
             
-            print(transform.rotation.x);
 
 
             transform.position = target.position + transform.rotation * pos;

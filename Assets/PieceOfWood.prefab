@@ -12,9 +12,11 @@ GameObject:
   - 136: {fileID: 13673672}
   - 23: {fileID: 2334650}
   - 54: {fileID: 5493864}
+  - 136: {fileID: 13643110}
+  - 114: {fileID: 11402718}
   m_Layer: 0
   m_Name: PieceOfWood
-  m_TagString: Untagged
+  m_TagString: PlayerPhysicsProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,8 +27,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106368}
-  m_LocalRotation: {x: -.519685388, y: .479507118, z: .519685626, w: .479507029}
-  m_LocalPosition: {x: -48.7452087, y: 6.42531967, z: 53.5281372}
+  m_LocalRotation: {x: -.000493653642, y: .707106709, z: .000493653759, w: .70710659}
+  m_LocalPosition: {x: -54.5048523, y: 6.42531967, z: 53.3179245}
   m_LocalScale: {x: .300000012, y: .432801127, z: .300000012}
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,6 +79,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &11402718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c51b8f6003ce8545b55265efdcd5370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &13643110
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: .82309258
+  m_Height: 2.5080843
+  m_Direction: 1
+  m_Center: {x: 5.9604659e-08, y: 2.14194218e-17, z: 1.51693821e-05}
 --- !u!136 &13673672
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -86,8 +112,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
+  m_Radius: .549922228
+  m_Height: 2.22765899
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
@@ -96,7 +122,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: PlayerPhysicsProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 106368}

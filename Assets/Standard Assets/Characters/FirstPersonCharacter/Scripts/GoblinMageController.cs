@@ -48,7 +48,6 @@ using System.Collections;
                         {
 							NavMeshAgent agent = GetComponent<NavMeshAgent>();
 							agent.destination = Player.position;
-							//stary movement?
                             /*transform.position += transform.forward * MoveSpeed * Time.deltaTime;
                             GetComponent<Animation>().wrapMode = WrapMode.Default;*/
                             GetComponent<Animation>().Play("run");

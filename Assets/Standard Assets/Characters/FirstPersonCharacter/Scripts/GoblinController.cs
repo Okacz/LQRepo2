@@ -49,7 +49,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                         {
                             walk = Random.Range(0, 3);
                             
-                            //StartCoroutine(walkAroundLikeAnIdiot(walk));
+                            StartCoroutine(walkAroundLikeAnIdiot(walk));
                         }
                         
                     }

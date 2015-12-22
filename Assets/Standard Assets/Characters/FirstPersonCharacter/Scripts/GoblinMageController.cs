@@ -33,11 +33,7 @@ using System.Collections;
             if (health > 0)
             {
                 transform.LookAt(Player);
-                transform.eulerAngles = new Vector3(
-                0,
-                transform.eulerAngles.y,
-                0
-                );
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 if (!GetComponent<Animation>().IsPlaying("attack1") && !GetComponent<Animation>().IsPlaying("block"))
                 {
                     if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(Player.position.x, 0, Player.position.z)) > MaxDist)
@@ -50,9 +46,10 @@ using System.Collections;
                     else
                         if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(Player.position.x, 0, Player.position.z)) <= MaxDist && Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(Player.position.x, 0, Player.position.z)) >= MinDist)
                         {
-
-                            transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-                            GetComponent<Animation>().wrapMode = WrapMode.Default;
+							NavMeshAgent agent = GetComponent<NavMeshAgent>();
+							agent.destination = Player.position;
+                            /*transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+                            GetComponent<Animation>().wrapMode = WrapMode.Default;*/
                             GetComponent<Animation>().Play("run");
                             StartCoroutine(shootFireball());
 
@@ -126,7 +123,7 @@ using System.Collections;
                     }
                 }
             }
-            if (other.tag == "PlayerPhysicsProjectile")
+			if ((other.tag=="PlayerPhysicsProjectile")&&(health > 0))
             {
                 GameObject thingy = other.gameObject;
                 Vector3 thingyspeed = thingy.GetComponent<Rigidbody>().velocity;

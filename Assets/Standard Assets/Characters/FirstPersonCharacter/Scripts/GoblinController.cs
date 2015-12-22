@@ -11,7 +11,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         int walk = 0;
         bool invulnerable = false;
         float MoveSpeed = 3;
-        float MaxDist = 8;
+        float MaxDist = 10;
         float MinDist = 3;
         public bool dropsPotion = false;
         bool idiot = false;
@@ -67,12 +67,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
                         if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(Player.position.x, 0, Player.position.z)) <= MaxDist && Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(Player.position.x, 0, Player.position.z)) >= MinDist)
                         {
                             transform.LookAt(Player);
-                            transform.eulerAngles = new Vector3(
-                            0,
-                            transform.eulerAngles.y,
-                            0
-                            );
-                            transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+
+							//stary movement
+                            /*transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                            transform.position += transform.forward * MoveSpeed * Time.deltaTime;*/
+							
+							NavMeshAgent agent = GetComponent<NavMeshAgent>();
+							agent.destination = Player.position;
                             GetComponent<Animation>().wrapMode = WrapMode.Default;
                             GetComponent<Animation>().Play("run");
 
@@ -82,15 +83,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
                             if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(Player.position.x, 0, Player.position.z)) < MinDist)
                             {
                                 transform.LookAt(Player);
-                                transform.eulerAngles = new Vector3(
-                                0,
-                                transform.eulerAngles.y,
-                                0
-                                );
+                                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                                 GetComponent<Animation>().wrapMode = WrapMode.Once;
                                 GetComponent<Animation>().Play("attack1");
-
-
                             }
                 }
             }
@@ -167,7 +162,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     }
                 }
             }
-            if(other.tag=="PlayerPhysicsProjectile")
+			if((other.tag=="PlayerPhysicsProjectile")&&(health > 0))
             {
                 GameObject thingy = other.gameObject;
                 Vector3 thingyspeed=thingy.GetComponent<Rigidbody>().velocity;

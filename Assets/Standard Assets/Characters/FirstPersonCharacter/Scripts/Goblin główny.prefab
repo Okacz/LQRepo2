@@ -8625,8 +8625,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 143640}
   m_LocalRotation: {x: 0, y: .996068597, z: 0, w: -.0885855183}
-  m_LocalPosition: {x: 5.25500011, y: .579999983, z: -2.5309999}
-  m_LocalScale: {x: 1.36538684, y: 1.36538684, z: 1.36538684}
+  m_LocalPosition: {x: -16.3691292, y: 15.0760422, z: 123.117966}
+  m_LocalScale: {x: 1.36538672, y: 1.36538684, z: 1.36538684}
   m_Children:
   - {fileID: 415468}
   - {fileID: 416504}
@@ -9939,7 +9939,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 143640}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100000
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -10028,6 +10028,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   Player: {fileID: 0}
+  loot: {fileID: 0}
+  dropsPotion: 0
 --- !u!114 &11498178
 MonoBehaviour:
   m_ObjectHideFlags: 1

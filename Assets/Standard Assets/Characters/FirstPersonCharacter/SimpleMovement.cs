@@ -47,7 +47,7 @@ public class SimpleMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if(score>-1233)
+            if(score>0)
             {
                 GameObject a = (GameObject)Instantiate(projectile, transform.position + transform.forward * 1 + transform.up * 1, projectile.transform.rotation);
                 a.GetComponent<Rigidbody>().AddForce(transform.forward * 20000 + transform.up * 5000);
@@ -55,6 +55,11 @@ public class SimpleMovement : MonoBehaviour
                 UpdateScore();
             }
            
+        }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            transform.position=new Vector3(-300, 5.20f, 255);
+
         }
         transform.eulerAngles = new Vector3(
                             0,
@@ -245,7 +250,7 @@ public class SimpleMovement : MonoBehaviour
             UpdateHealth();
         if(health<=0)
             {
-                Application.LoadLevel("Main Menu");
+                die();
             }
     }
     void UpdateHealth()
@@ -274,9 +279,12 @@ public class SimpleMovement : MonoBehaviour
     {
         if (!jack.GetComponent<Animation>().IsPlaying("Lumbering"))
         {
-            if (Input.GetMouseButtonDown(0)&&isMenuUp==false)
+            if (Input.GetMouseButtonDown(0)&&menu.activeSelf==false)
             {
                 GetComponent<Animation>().wrapMode = WrapMode.Once;
+                GetComponent<Animation>().GetClip("Lumbering");                
+                
+
                 jack.GetComponent<Animation>().Play("Lumbering");
 
             }
@@ -293,8 +301,15 @@ public class SimpleMovement : MonoBehaviour
             }
         }
     }
+    public void die()
+    {
+        Application.LoadLevel("Main Menu");
+    }
     public void OnTriggerEnter(Collider other)
     {
-        
+        if(other.tag=="Water")
+        {
+            die();
+        }
     }
 }

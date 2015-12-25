@@ -32,7 +32,7 @@ using System.Collections;
             if (col.collider.name == "MainLumberjack")
             {
                 print("kolizja z " + col.collider.name);
-                controller.Damage(10);
+                controller.NoDamage(10);
 
             }
             CollisionHandler.HandleCollision(gameObject, col);

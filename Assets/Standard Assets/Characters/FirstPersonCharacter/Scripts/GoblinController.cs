@@ -166,22 +166,23 @@ namespace UnityStandardAssets.Characters.FirstPerson
                         }
                     }
                 }
-            }
-            if(other.tag=="PlayerPhysicsProjectile")
-            {
-                GameObject thingy = other.gameObject;
-                Vector3 thingyspeed=thingy.GetComponent<Rigidbody>().velocity;
-                //print(thingyspeed.magnitude);
-                if(thingyspeed.magnitude>3)
+                if (other.tag == "PlayerPhysicsProjectile")
                 {
-                    print(thingyspeed.magnitude);
-                    if (invulnerable == false)
+                    GameObject thingy = other.gameObject;
+                    Vector3 thingyspeed = thingy.GetComponent<Rigidbody>().velocity;
+                    //print(thingyspeed.magnitude);
+                    if (thingyspeed.magnitude > 3)
                     {
-                        StartCoroutine(getRect(50));
+                        print(thingyspeed.magnitude);
+                        if (invulnerable == false)
+                        {
+                            StartCoroutine(getRect(50));
+                        }
                     }
+
                 }
-                
             }
+            
             
         }
     }

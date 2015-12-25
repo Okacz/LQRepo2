@@ -17,7 +17,7 @@ public class CameraMovement3 : MonoBehaviour
 		{
             transform.RotateAround(new Vector3(target.position.x, target.position.y, target.position.z), Vector3.up, Input.GetAxis("Mouse X") * speed);
             //transform.RotateAround(target.position, new Vector3((transform.rotation.eulerAngles.y%90), 0, 90-(transform.rotation.eulerAngles.y%90)), Input.GetAxis("Mouse Y") * speed);
-            if ((Input.GetAxis("Mouse Y") > 0 && transform.rotation.x > -0.18f) || (Input.GetAxis("Mouse Y") < 0 && transform.rotation.x < 0.4f))
+            if ((Input.GetAxis("Mouse Y") > 0 && transform.rotation.x > -0.18f && target.position.y < transform.position.y) || (Input.GetAxis("Mouse Y") < 0 && transform.rotation.x < 0.4f))
             {
                 transform.RotateAround(new Vector3(target.position.x, target.position.y, target.position.z), transform.right, -Input.GetAxis("Mouse Y") * speed);
 

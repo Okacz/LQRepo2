@@ -6,12 +6,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
     {
         public SimpleMovement controller;
         public Transform Player;
-
+        public float Cooldown = 2;
+        public GameObject fireball;
+        public GameObject flamethrower;
+        bool ready = true;
         float health = 1000;
         bool invulnerable = false;
-        float MoveSpeed = 3;
-        float MaxDist = 8;
-        float MinDist = 3;
+        float MoveSpeed = 6;
+        float MaxDist = 16;
+        float MinDist = 8;
         // Use this for initialization
         void Start()
         {
@@ -27,7 +30,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         void Update()
         {
 
-
+            
             if (health > 0)
             {
                 transform.LookAt(Player);
@@ -36,6 +39,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 transform.eulerAngles.y,
                 0
                 );
+                
                 if (!GetComponent<Animation>().IsPlaying("attack1") && !GetComponent<Animation>().IsPlaying("block"))
                 {
                     if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(Player.position.x, 0, Player.position.z)) > MaxDist)
@@ -48,10 +52,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     else
                         if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(Player.position.x, 0, Player.position.z)) <= MaxDist && Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(Player.position.x, 0, Player.position.z)) >= MinDist)
                         {
-
-                            transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-                            GetComponent<Animation>().wrapMode = WrapMode.Default;
-                            GetComponent<Animation>().Play("run");
+                            if(ready==true)
+                            {
+                                transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+                                GetComponent<Animation>().wrapMode = WrapMode.Default;
+                                GetComponent<Animation>().Play("run");
+                            }
+                            
 
                         }
                         else
@@ -59,8 +66,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
                             if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(Player.position.x, 0, Player.position.z)) < MinDist)
                             {
                                 GetComponent<Animation>().wrapMode = WrapMode.Once;
-                                GetComponent<Animation>().Play("attack1");
+                                if(ready==true)
+                                {
+                                    StartCoroutine(shootFireball());
 
+                                }
+                                
 
                             }
                 }
@@ -68,19 +79,68 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 
         }
-        IEnumerator getRect(float damage)
+        IEnumerator shootFireball()
         {
-            GetComponent<Animation>().Stop();
-            GetComponent<Animation>().wrapMode = WrapMode.Once;
-            GetComponent<Animation>().Play("block");
+
+            
+
+                ready = false;
+                GetComponent<Animation>().wrapMode = WrapMode.Default;
+                GetComponent<Animation>().Play("attack2");
+                   // yield return new WaitForSeconds(GetComponent<Animation>().pla["attack2"].length);
+                for(int i=0; i<8; i++)
+                {
+                    //GameObject a = (GameObject)Instantiate(fireball, new Vector3(transform.position.x, transform.position.y + 10, transform.position.z) + transform.forward * 2, transform.rotation);
+                    //print(transform.GetChild(2).GetChild(3).name);
+                    GameObject a = (GameObject)Instantiate(fireball, transform.GetChild(2).GetChild(2).GetChild(0).transform.position, transform.rotation);
+
+                    a.transform.LookAt(Player);
+                    
+                    yield return new WaitForSeconds(0.2f);
+                }
+                GetComponent<Animation>().Play("idle");
+                for (int i = 0; i < 36; i++ )
+                {
+                    GameObject a = (GameObject)Instantiate(flamethrower, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (Quaternion.Euler(0, i*20, 0) * transform.right*(5+i*0.2f)), Quaternion.Euler(-90, 0, 0));
+                    yield return new WaitForSeconds(0.1f);
+                }
+
+
+                    yield return new WaitForSeconds(Cooldown);
+                ready = true;
+
+            
+
+
+        }
+        IEnumerator spawnFire()
+        {
+            for (int i = 0; i < 360; i++)
+            {
+                GameObject a = (GameObject)Instantiate(flamethrower, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (Quaternion.Euler(0, i, 0) * transform.right * 5), Quaternion.Euler(-90, 0, 0));
+                GameObject b = (GameObject)Instantiate(flamethrower, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (Quaternion.Euler(0, i, 0) * transform.right * 15), Quaternion.Euler(-90, 0, 0));
+                GameObject c = (GameObject)Instantiate(flamethrower, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (Quaternion.Euler(0, i, 0) * transform.right * 10), Quaternion.Euler(-90, 0, 0));
+                
+            }
+            yield return new WaitForSeconds(1);
+            for (int i = 0; i < 360; i++)
+            {
+                GameObject a = (GameObject)Instantiate(flamethrower, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (Quaternion.Euler(0, i, 0) * transform.right * 20), Quaternion.Euler(-90, 0, 0));
+                GameObject b = (GameObject)Instantiate(flamethrower, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (Quaternion.Euler(0, i, 0) * transform.right * 25), Quaternion.Euler(-90, 0, 0));
+                GameObject c = (GameObject)Instantiate(flamethrower, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (Quaternion.Euler(0, i, 0) * transform.right * 30), Quaternion.Euler(-90, 0, 0));
+
+            }
+            yield return new WaitForSeconds(1);
+        }
+        void getRect(float damage)
+        {
+            
             health = health - damage;
             if (health <= 0)
             {
                 die();
             }
-            invulnerable = true;
-            yield return new WaitForSeconds(1);
-            invulnerable = false;
+            
 
 
         }
@@ -104,7 +164,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
                         if (invulnerable == false)
                         {
-                            StartCoroutine(getRect(50));
+                            getRect(50);
+                            print("au");
                         }
                     }
                 }

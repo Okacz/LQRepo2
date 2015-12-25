@@ -7,6 +7,6 @@ public class LoadScene : MonoBehaviour {
 
     public void LoadSceneKurwo()
     {
-        Application.LoadLevel("scena1");
+        Application.LoadLevel("GoblinLevel1");
     }
 }

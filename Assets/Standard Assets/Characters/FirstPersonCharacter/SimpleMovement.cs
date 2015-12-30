@@ -230,6 +230,7 @@ public class SimpleMovement : MonoBehaviour
         if (invulnerable == false&&health>0)
         {
             health -= newHealth;
+			GetComponent<AudioSource>().Play ();
             UpdateHealth();
             if(health<=0)
             {

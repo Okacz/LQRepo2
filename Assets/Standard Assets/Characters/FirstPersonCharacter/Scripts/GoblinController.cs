@@ -126,6 +126,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 GetComponent<Animation>().wrapMode = WrapMode.Once;
                 GetComponent<Animation>().Play("block");
                 health = health - damage;
+				//GetComponent<AudioSource>().Play ();
                 if (health <= 0)
                 {
                     die();
@@ -152,6 +153,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         
         void OnTriggerEnter(Collider other)
         {
+			
             if (health > 0)
             {
                 if (controller.GetComponent<Animation>().IsPlaying("Lumbering"))
@@ -162,6 +164,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
                         if (invulnerable == false)
                         {
+							other.GetComponent<AudioSource> ().Play ();
                             StartCoroutine(getRect(50));
                         }
                     }

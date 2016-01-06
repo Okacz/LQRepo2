@@ -240,6 +240,7 @@ public class SimpleMovement : MonoBehaviour
             {
 				transform.position = Spawnpoint;
 				health = 100;
+				UpdateHealth ();
                 //Application.LoadLevel("Main Menu");
             }
             else
@@ -254,7 +255,8 @@ public class SimpleMovement : MonoBehaviour
     {
 
         health -= newHealth;
-            UpdateHealth();
+		GetComponent<AudioSource>().Play ();
+        UpdateHealth();
         if(health<=0)
             {
                 die();
@@ -312,6 +314,7 @@ public class SimpleMovement : MonoBehaviour
     {
 		transform.position = Spawnpoint;
 		health = 100;
+		UpdateHealth ();
         //Application.LoadLevel("Main Menu");
     }
     public void OnTriggerEnter(Collider other)

@@ -33,8 +33,12 @@ public class SimpleMovement : MonoBehaviour
     private float jumpStartY;
     public float jumpForce;
     private float maxHeight;
+
+	public Vector3 Spawnpoint;
+
     private void Start()
     {
+		Spawnpoint = transform.position;
         maxBarLength = healthBar.GetComponent<RectTransform>().rect.width;
         health = maxHealth;
         score = 0;
@@ -234,7 +238,9 @@ public class SimpleMovement : MonoBehaviour
             UpdateHealth();
             if(health<=0)
             {
-                Application.LoadLevel("Main Menu");
+				transform.position = Spawnpoint;
+				health = 100;
+                //Application.LoadLevel("Main Menu");
             }
             else
             invulnerable = true;
@@ -304,7 +310,9 @@ public class SimpleMovement : MonoBehaviour
     }
     public void die()
     {
-        Application.LoadLevel("Main Menu");
+		transform.position = Spawnpoint;
+		health = 100;
+        //Application.LoadLevel("Main Menu");
     }
     public void OnTriggerEnter(Collider other)
     {

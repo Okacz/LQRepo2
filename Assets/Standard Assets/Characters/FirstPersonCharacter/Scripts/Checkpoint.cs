@@ -13,6 +13,7 @@ public class Checkpoint : MonoBehaviour {
 			SimpleMovement skrypt = playa.GetComponent<SimpleMovement> ();
 			skrypt.Spawnpoint = transform.position;
 			//print ("zacheckpointowalo");
+            transform.GetComponent("Halo").GetType().GetProperty("enabled").SetValue(transform.GetComponent("Halo"), true, null); 
 		}
 	}
 

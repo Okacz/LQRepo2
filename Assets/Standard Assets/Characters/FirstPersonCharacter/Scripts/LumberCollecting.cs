@@ -14,7 +14,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         void Start()
         {
-            GameObject gameControllerObject = GameObject.FindWithTag("MainLumberjack");
+            GameObject gameControllerObject = GameObject.FindWithTag("GameController");
             if (gameControllerObject != null)
             {
                 controller = gameControllerObject.GetComponent<SimpleMovement>();

@@ -8,17 +8,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public Transform Player;
         public GameObject loot;
         float health = 100;
+        public float damageTaken;
         int walk = 0;
         bool invulnerable = false;
-        float MoveSpeed = 3;
-        float MaxDist = 8;
-        float MinDist = 3;
+        public float MoveSpeed = 3;
+        public float MaxDist = 8;
+        public float MinDist = 3;
         public bool dropsPotion = false;
         bool idiot = false;
         // Use this for initialization
         void Start()
         {
-            GameObject gameControllerObject = GameObject.FindWithTag("MainLumberjack");
+            GameObject gameControllerObject = GameObject.FindWithTag("GameController");
             if (gameControllerObject != null)
             {
                 controller = gameControllerObject.GetComponent<SimpleMovement>();
@@ -132,7 +133,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     die();
                 }
                 invulnerable = true;
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(0.3f);
                 invulnerable = false;
                 
             
@@ -165,7 +166,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                         if (invulnerable == false)
                         {
 							other.GetComponent<AudioSource> ().Play ();
-                            StartCoroutine(getRect(50));
+                            StartCoroutine(getRect(damageTaken));
                         }
                     }
                 }

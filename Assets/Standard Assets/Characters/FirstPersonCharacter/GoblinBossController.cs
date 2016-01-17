@@ -7,8 +7,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public SimpleMovement controller;
         public Transform Player;
         public float Cooldown = 2;
+        public GameObject healthBar;
+        public GameObject healthBarBackground;
         public GameObject fireball;
         public GameObject flamethrower;
+        private float maxBarLength = 0;
         bool ready = true;
         float health = 1000;
         bool invulnerable = false;
@@ -18,7 +21,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Use this for initialization
         void Start()
         {
-            GameObject gameControllerObject = GameObject.FindWithTag("MainLumberjack");
+            maxBarLength = healthBar.GetComponent<RectTransform>().rect.width;
+            GameObject gameControllerObject = GameObject.FindWithTag("GameController");
             if (gameControllerObject != null)
             {
                 controller = gameControllerObject.GetComponent<SimpleMovement>();
@@ -161,10 +165,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
                     if (other.name == "NPC_Tools_Axe_004")
                     {
-
+                        healthBar.SetActive(true);
+                        healthBarBackground.SetActive(true);
                         if (invulnerable == false)
                         {
-                            getRect(50);
+                            other.GetComponent<AudioSource>().Play();
+                            getRect(30);
+                            float oldX = healthBar.transform.position.x;
+                            float oldW = healthBar.GetComponent<RectTransform>().rect.width;
+                            float w = maxBarLength * (health / 1000);
+                            float h = healthBar.GetComponent<RectTransform>().rect.height;
+                            healthBar.GetComponent<RectTransform>().sizeDelta = new Vector2(w, h);
+                            healthBar.transform.Translate(new Vector3((-oldW + w-3) / 2, 0, 0));
                             print("au");
                         }
                     }

@@ -8,6 +8,7 @@ using System.Collections;
 [RequireComponent(typeof(CharacterController))]
 public class SimpleMovement : MonoBehaviour
 {
+    bool respawned = false;
     public float speed = 3.0F;
     public float rotateSpeed = 3.0F;
     public float JumpSpeed = 1.0f;
@@ -24,12 +25,13 @@ public class SimpleMovement : MonoBehaviour
     private float health;
     public float maxHealth;
     public Text scoreText;
+    public GameObject deathmenu;
     public GameObject menu;
     private int score;
     public float invulnerabilityTime;
     bool invulnerable = false;
     bool jumpingUp = false;
-    bool isMenuUp = false;
+    public bool isMenuUp = false;
     private float jumpStartY;
     public float jumpForce;
     private float maxHeight;
@@ -38,12 +40,14 @@ public class SimpleMovement : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
 		Spawnpoint = transform.position;
         maxBarLength = healthBar.GetComponent<RectTransform>().rect.width;
         health = maxHealth;
         score = 0;
         UpdateHealth();
         menu.SetActive(false);
+        deathmenu.SetActive(false);
         potiony = 0;
         
     }
@@ -65,22 +69,28 @@ public class SimpleMovement : MonoBehaviour
             transform.position=new Vector3(-300, 5.20f, 255);
 
         }
-        transform.eulerAngles = new Vector3(
+        if(health!=0)
+        {
+            transform.eulerAngles = new Vector3(
                             0,
                             transform.eulerAngles.y,
                             0
                             );
+        }
+        
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if (menu.activeSelf==false)
             {
                 showMenu();
                 isMenuUp = true;
+                Cursor.visible = true;
             }
             else
             {
                 hideMenu();
                 isMenuUp = false;
+                Cursor.visible = false;
             }
         }
         CharacterController controller = GetComponent<CharacterController>();
@@ -197,7 +207,7 @@ public class SimpleMovement : MonoBehaviour
     {
         StartCoroutine(DamageEnum(newHealth));
     }
-    public void heal(int healing)
+    public void heal(float healing)
    {
         if(health+healing<=maxHealth)
         {
@@ -231,17 +241,15 @@ public class SimpleMovement : MonoBehaviour
     public IEnumerator DamageEnum(int newHealth)
     {
         
-        if (invulnerable == false&&health>0)
+        if (invulnerable == false&&health>0&&respawned==false)
         {
             health -= newHealth;
 			GetComponent<AudioSource>().Play ();
             UpdateHealth();
             if(health<=0)
             {
-				transform.position = Spawnpoint;
-				health = 100;
-				UpdateHealth ();
-                //Application.LoadLevel("Main Menu");
+                print("poszło die enum");
+                die();
             }
             else
             invulnerable = true;
@@ -257,8 +265,9 @@ public class SimpleMovement : MonoBehaviour
         health -= newHealth;
 		GetComponent<AudioSource>().Play ();
         UpdateHealth();
-        if(health<=0)
+        if(health<=0&&respawned==false)
             {
+                print("poszło die take");
                 die();
             }
     }
@@ -312,15 +321,35 @@ public class SimpleMovement : MonoBehaviour
     }
     public void die()
     {
-		transform.position = Spawnpoint;
-		health = 100;
-		UpdateHealth ();
+        
+        Time.timeScale = 0;
+        deathmenu.SetActive(true);
+        isMenuUp = true;
+        Cursor.visible = true;
         //Application.LoadLevel("Main Menu");
+    }
+   public IEnumerator isRespawned()
+    {
+        health = maxHealth;
+        UpdateHealth();
+        respawned = true;
+        yield return new WaitForSeconds(3);
+        respawned = false;
+    }
+    public void respawn()
+    {
+        health = maxHealth;
+        UpdateHealth();
+        StartCoroutine(isRespawned());
+        
+        transform.position = Spawnpoint;
+        
     }
     public void OnTriggerEnter(Collider other)
     {
         if(other.tag=="Water")
         {
+            print("poszło die water");
             die();
         }
     }

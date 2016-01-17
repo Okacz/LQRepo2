@@ -9,4 +9,8 @@ public class LoadScene : MonoBehaviour {
     {
         Application.LoadLevel("GoblinLevel1");
     }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

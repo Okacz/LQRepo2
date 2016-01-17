@@ -1799,6 +1799,7 @@ GameObject:
   - 54: {fileID: 5403924}
   - 65: {fileID: 6556996}
   - 114: {fileID: 11446500}
+  - 82: {fileID: 8253740}
   m_Layer: 14
   m_Name: GoblinMag
   m_TagString: Goblin
@@ -7475,7 +7476,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133236}
   m_LocalRotation: {x: 0, y: .016400598, z: 0, w: .999865532}
-  m_LocalPosition: {x: 21.9850578, y: 15.0760422, z: 32.2448578}
+  m_LocalPosition: {x: -71.9499969, y: 18.079155, z: .920000017}
   m_LocalScale: {x: 1.36538851, y: 1.36538684, z: 1.36538851}
   m_Children:
   - {fileID: 460378}
@@ -9778,6 +9779,76 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.56667972, z: 1}
   m_Center: {x: 0, y: .777878582, z: 0}
+--- !u!82 &8253740
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 133236}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!111 &11139214
 Animation:
   m_ObjectHideFlags: 1
@@ -9820,6 +9891,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   fireball: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
   Cooldown: 2
+  damageTaken: 20
   MoveSpeed: 3
   MaxDist: 20
   MinDist: 3

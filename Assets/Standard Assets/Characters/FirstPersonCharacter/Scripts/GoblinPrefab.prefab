@@ -7983,7 +7983,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160448}
-  m_LocalRotation: {x: .661381841, y: -.321860999, z: .366089493, w: .570051074}
+  m_LocalRotation: {x: .661381781, y: -.321860969, z: .366089463, w: .570051014}
   m_LocalPosition: {x: -.266631752, y: -.00868497789, z: -.0449426919}
   m_LocalScale: {x: .999999881, y: 1.00000012, z: 1.00000012}
   m_Children: []
@@ -8632,8 +8632,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166230}
   m_LocalRotation: {x: 0, y: .962694764, z: 0, w: -.270589918}
-  m_LocalPosition: {x: -66.7399979, y: 18.1499996, z: -6.42999983}
-  m_LocalScale: {x: 1.36538744, y: 1.36538684, z: 1.36538732}
+  m_LocalPosition: {x: -62.6300011, y: 18.1499996, z: -6.53000021}
+  m_LocalScale: {x: 1.36538815, y: 1.36538684, z: 1.36538672}
   m_Children:
   - {fileID: 430298}
   - {fileID: 472778}
@@ -9181,7 +9181,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146860}
-  m_LocalRotation: {x: .661381841, y: -.321861029, z: .366089612, w: .570050776}
+  m_LocalRotation: {x: .6613819, y: -.321861058, z: .366089642, w: .570050836}
   m_LocalPosition: {x: -.143454403, y: -.00868499838, z: -.0449427105}
   m_LocalScale: {x: 1, y: .99999994, z: .999999881}
   m_Children:
@@ -10030,6 +10030,10 @@ MonoBehaviour:
   controller: {fileID: 0}
   Player: {fileID: 0}
   loot: {fileID: 165402, guid: fcc5fee8fcb9d1d46b95f0a8fdcd2a85, type: 2}
+  damageTaken: 20
+  MoveSpeed: 4
+  MaxDist: 20
+  MinDist: 3
   dropsPotion: 0
 --- !u!114 &11472258
 MonoBehaviour:

@@ -8,12 +8,13 @@ public class CameraMovement3 : MonoBehaviour
     public Transform target;
     public Vector3 pos;
     public GameObject menu;
+    public GameObject deathmenu;
     void Start()
     {
     }
     void LateUpdate()
     {
-        if (menu.activeSelf == false)
+        if (menu.activeSelf == false && deathmenu.activeSelf == false)
 		{
             transform.RotateAround(new Vector3(target.position.x, target.position.y, target.position.z), Vector3.up, Input.GetAxis("Mouse X") * speed);
             //transform.RotateAround(target.position, new Vector3((transform.rotation.eulerAngles.y%90), 0, 90-(transform.rotation.eulerAngles.y%90)), Input.GetAxis("Mouse Y") * speed);

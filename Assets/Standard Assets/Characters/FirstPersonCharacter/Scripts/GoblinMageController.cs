@@ -8,6 +8,7 @@ using System.Collections;
         public GameObject fireball;
         public float Cooldown = 2;
         float health = 100;
+        public float damageTaken;
         bool invulnerable = false;
         public float MoveSpeed = 3;
         public float MaxDist = 8;
@@ -17,7 +18,7 @@ using System.Collections;
         // Use this for initialization
         void Start()
         {
-            GameObject gameControllerObject = GameObject.FindWithTag("MainLumberjack");
+            GameObject gameControllerObject = GameObject.FindWithTag("GameController");
             if (gameControllerObject != null)
             {
                 controller = gameControllerObject.GetComponent<SimpleMovement>();
@@ -96,7 +97,7 @@ using System.Collections;
                 die();
             }
             invulnerable = true;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.3f);
             invulnerable = false;
 
 
@@ -121,7 +122,8 @@ using System.Collections;
 
                         if (invulnerable == false)
                         {
-                            StartCoroutine(getRect(50));
+                            other.GetComponent<AudioSource>().Play();
+                            StartCoroutine(getRect(damageTaken));
                         }
                     }
                 }

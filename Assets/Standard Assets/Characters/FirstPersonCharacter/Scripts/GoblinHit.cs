@@ -8,7 +8,7 @@ using System.Collections;
         // Use this for initialization
         void Start()
         {
-            GameObject gameControllerObject = GameObject.FindWithTag("MainLumberjack");
+            GameObject gameControllerObject = GameObject.FindWithTag("GameController");
             if (gameControllerObject != null)
             {
                 controller = gameControllerObject.GetComponent<SimpleMovement>();

@@ -180,8 +180,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Lumbering
       takeName: Take 001
-      firstFrame: 380
-      lastFrame: 410
+      firstFrame: 390
+      lastFrame: 405
       wrapMode: 2
       orientationOffsetY: 0
       level: 0

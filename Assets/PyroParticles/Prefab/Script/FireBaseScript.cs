@@ -153,13 +153,13 @@ namespace DigitalRuby.PyroParticles
 
             // find all colliders and add explosive force
             Collider[] objects = UnityEngine.Physics.OverlapSphere(pos, radius);
-            foreach (Collider h in objects)
+            /*foreach (Collider h in objects)
             {
-                print("dededed");
+                //print("dededed");
                 Rigidbody r = h.GetComponent<Rigidbody>();
                 if (r != null)
                 {
-                    print("dededed");
+                    //print("dededed");
                         GameObject gameControllerObject = GameObject.FindWithTag("MainLumberjack");
                         if (gameControllerObject != null)
                         {
@@ -170,7 +170,7 @@ namespace DigitalRuby.PyroParticles
                     
                    // r.AddExplosionForce(force, pos, radius);
                 }
-            }
+			}*/
         }
 
         public virtual void Stop()

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Checkpoint : MonoBehaviour {
+public class Checkpoint2 : MonoBehaviour {
 	public SimpleMovement controller;
 	public void OnTriggerEnter(Collider col)
 	{
@@ -11,12 +11,12 @@ public class Checkpoint : MonoBehaviour {
 			//print ("checkpointuje");
 			GameObject playa = GameObject.Find ("MainLumberjack");
 			SimpleMovement skrypt = playa.GetComponent<SimpleMovement> ();
-			GameObject spawn = GameObject.Find ("Spawnpoint1");
+			GameObject spawn = GameObject.Find ("Spawnpoint2");
 			skrypt.Spawnpoint = spawn.transform.position;
 			//print ("zacheckpointowalo");
-			GameObject shrine = GameObject.Find ("sculpture_02");
+			GameObject shrine = GameObject.Find ("skulptur");
 
-            shrine.transform.GetComponent("Halo").GetType().GetProperty("enabled").SetValue(shrine.transform.GetComponent("Halo"), true, null); 
+			shrine.transform.GetComponent("Halo").GetType().GetProperty("enabled").SetValue(shrine.transform.GetComponent("Halo"), true, null); 
 		}
 	}
 

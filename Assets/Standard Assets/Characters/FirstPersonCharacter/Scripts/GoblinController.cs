@@ -147,7 +147,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if (dropsPotion == true)
             {
-                GameObject a = (GameObject)Instantiate(loot, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.Euler(-90, -180, 0));
+                GameObject a = (GameObject)Instantiate(loot, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.Euler(-90, -180, 0));
             }          
 
         }

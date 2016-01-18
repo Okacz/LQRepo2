@@ -8,6 +8,7 @@ public class IntroAnimation : MonoBehaviour {
         GetComponent<Animation>().wrapMode = WrapMode.Loop;
 
         GetComponent<Animation>().Play("Idle");
+        Time.timeScale = 0.3f;
 	}
 	
 	// Update is called once per frame

@@ -93,6 +93,17 @@ public class SimpleMovement : MonoBehaviour
                 Cursor.visible = false;
             }
         }
+
+		if (Input.GetKeyDown ("left shift")) 
+		{
+				speed = 12.0F;
+		}
+
+		if (Input.GetKeyUp ("left shift")) 
+		{
+				speed = 6.0F;
+		}
+
         CharacterController controller = GetComponent<CharacterController>();
         /*
         transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed, 0);
@@ -343,7 +354,8 @@ public class SimpleMovement : MonoBehaviour
         StartCoroutine(isRespawned());
         
         transform.position = Spawnpoint;
-        
+
+		//Rigidbody.isKinematic = true;
     }
     public void OnTriggerEnter(Collider other)
     {

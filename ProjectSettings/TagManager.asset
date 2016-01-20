@@ -7,6 +7,8 @@ TagManager:
   - PlayerPhysicsProjectile
   - Goblin
   - Water
+  - GoblinBossBody
+  - GoblinBossFoot
   layers:
   - Default
   - TransparentFX
@@ -25,9 +27,9 @@ TagManager:
   - GoblinLayer
   - ProjectileLayer
   - PlayerLayer
-  - 
-  - 
-  - 
+  - GoblinBossLayer
+  - GoblinBossfoot
+  - WeaponLayer
   - 
   - 
   - 

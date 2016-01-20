@@ -7,6 +7,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public SimpleMovement controller;
         public Transform Player;
         public GameObject loot;
+
         float health = 100;
         public float damageTaken;
         int walk = 0;

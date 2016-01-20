@@ -12,34 +12,45 @@ public class SimpleMovement : MonoBehaviour
     public float speed = 3.0F;
     public float rotateSpeed = 3.0F;
     public float JumpSpeed = 1.0f;
-    private float potiony = 0;
+    public float potiony = 0;
     private float curSpeed = 0;
     private float strafingspeed = 0;
     public GameObject camera;
     public GameObject jack = GameObject.Find("Lumberjack2");
     public GameObject projectile;
     public GameObject healthBar;
+    public GameObject staminaBar;
+    public float maxStamina = 100;
+    private float stamina;
     private float maxBarLength = 0;
     public Text healthText;
     public Text potionText;
     private float health;
     public float maxHealth;
     public Text scoreText;
+    public GameObject winmenu;
     public GameObject deathmenu;
     public GameObject menu;
     private int score;
     public float invulnerabilityTime;
     bool invulnerable = false;
     bool jumpingUp = false;
+    public CameraMovement3 camerascript;
     public bool isMenuUp = false;
     private float jumpStartY;
+    public GameObject bossBar;
+    public GameObject bossBarBackground;
     public float jumpForce;
     private float maxHeight;
+    public GoblinBossController gbc;
+    bool staminaCooldown = false;
 
 	public Vector3 Spawnpoint;
 
     private void Start()
     {
+
+        stamina = maxStamina;
         Cursor.visible = false;
 		Spawnpoint = transform.position;
         maxBarLength = healthBar.GetComponent<RectTransform>().rect.width;
@@ -48,12 +59,13 @@ public class SimpleMovement : MonoBehaviour
         UpdateHealth();
         menu.SetActive(false);
         deathmenu.SetActive(false);
+        winmenu.SetActive(false);
         potiony = 0;
         
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetMouseButtonDown(1))
         {
             if(score>0)
             {
@@ -94,15 +106,33 @@ public class SimpleMovement : MonoBehaviour
             }
         }
 
-		if (Input.GetKeyDown ("left shift")) 
+		if (Input.GetKey ("left shift")&&stamina>0) 
 		{
 				speed = 12.0F;
+                stamina = stamina - 2;
+                float oldX = staminaBar.transform.position.x;
+                float oldW = staminaBar.GetComponent<RectTransform>().rect.width;
+                float w = maxBarLength * (stamina / maxStamina);
+                float h = staminaBar.GetComponent<RectTransform>().rect.height;
+                staminaBar.GetComponent<RectTransform>().sizeDelta = new Vector2(w, h);
+                staminaBar.transform.Translate(new Vector3((-oldW + w) / 2, 0, 0));
+                StartCoroutine(StaminaCD());
 		}
-
-		if (Input.GetKeyUp ("left shift")) 
-		{
-				speed = 6.0F;
-		}
+        else
+        {
+            speed = 6f;
+            if(stamina<100&&staminaCooldown==false)
+            {
+                stamina = stamina + 0.5f;
+                float oldX = staminaBar.transform.position.x;
+                float oldW = staminaBar.GetComponent<RectTransform>().rect.width;
+                float w = maxBarLength * (stamina / maxStamina);
+                float h = staminaBar.GetComponent<RectTransform>().rect.height;
+                staminaBar.GetComponent<RectTransform>().sizeDelta = new Vector2(w, h);
+                staminaBar.transform.Translate(new Vector3((-oldW + w) / 2, 0, 0));
+            }
+            
+        }
 
         CharacterController controller = GetComponent<CharacterController>();
         /*
@@ -112,7 +142,7 @@ public class SimpleMovement : MonoBehaviour
         strafingspeed = 0;
         if(controller.isGrounded)
         {
-
+            de
             if (Input.GetKey(KeyCode.Q))
             {
                 strafingspeed = Time.deltaTime * speed;
@@ -169,6 +199,7 @@ public class SimpleMovement : MonoBehaviour
         {
             if(controller.isGrounded)
             {
+                print("ziemia");
                 jumpStartY = transform.position.y;
                 maxHeight = jumpStartY + jumpForce;
                 jumpingUp = true;
@@ -248,6 +279,13 @@ public class SimpleMovement : MonoBehaviour
         potiony -= 1;
         updatePotiony();
         heal(40);
+    }
+    public IEnumerator StaminaCD()
+    {
+        staminaCooldown = true;
+        yield return new WaitForSeconds(3);
+        staminaCooldown = false;
+
     }
     public IEnumerator DamageEnum(int newHealth)
     {
@@ -332,7 +370,10 @@ public class SimpleMovement : MonoBehaviour
     }
     public void die()
     {
-        
+        gbc.musicUp = false;
+        bossBar.SetActive(false);
+        bossBarBackground.SetActive(false);
+        camerascript.stopAllMusic();
         Time.timeScale = 0;
         deathmenu.SetActive(true);
         isMenuUp = true;
@@ -364,5 +405,15 @@ public class SimpleMovement : MonoBehaviour
             print("poszło die water");
             die();
         }
+    }
+    public void win()
+    {
+       
+        camerascript.stopAllMusic();
+        Time.timeScale = 0;
+        winmenu.SetActive(true);
+        isMenuUp = true;
+        Cursor.visible = true;
+        //Application.LoadLevel("Main Menu");
     }
 }
